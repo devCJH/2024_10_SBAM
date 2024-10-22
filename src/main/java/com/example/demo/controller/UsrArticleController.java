@@ -15,9 +15,9 @@ public class UsrArticleController {
 	private int lastArticleId;
 	private ArticleService articleService;
 	
-	public UsrArticleController() {
+	public UsrArticleController(ArticleService articleService) {
+		this.articleService = articleService;
 		this.lastArticleId = 3;
-		this.articleService = new ArticleService();
 	}
 	
 	@GetMapping("/usr/article/doWrite")
