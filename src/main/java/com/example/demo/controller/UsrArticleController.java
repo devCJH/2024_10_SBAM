@@ -24,7 +24,7 @@ public class UsrArticleController {
 	@ResponseBody
 	public Article doWrite(String title, String body) {
 		lastArticleId++;
-		Article article = articleService.writeArticle(lastArticleId, title, body);
+		articleService.writeArticle(lastArticleId, title, body);
 		return article;
 	}
 
@@ -58,7 +58,7 @@ public class UsrArticleController {
 			return id + "번 게시물은 존재하지 않습니다";
 		}
 		
-		articleService.modifyArticle(foundArticle, title, body);
+		articleService.modifyArticle(id, title, body);
 		
 		return id + "번 게시물을 정상적으로 수정했습니다";
 	}
@@ -73,14 +73,8 @@ public class UsrArticleController {
 			return id + "번 게시물은 존재하지 않습니다";
 		}
 		
-		articleService.deleteArticle(foundArticle);
+		articleService.deleteArticle(id);
 		
 		return id + "번 게시물을 정상적으로 삭제했습니다";
 	}
 }
-
-
-
-
-
-
