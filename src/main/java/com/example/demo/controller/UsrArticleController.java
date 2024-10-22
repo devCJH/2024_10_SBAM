@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -39,14 +38,7 @@ public class UsrArticleController {
 	@ResponseBody
 	public Object showDetail(int id) {
 		
-		Article foundArticle = null;
-		
-		for (Article article : articles) {
-			if (article.getId() == id) {
-				foundArticle = article;
-				break;
-			}
-		}
+		Article foundArticle = articleService.getArticleById(id);
 		
 		if (foundArticle == null) {
 			return id + "번 게시물은 존재하지 않습니다";
@@ -59,43 +51,28 @@ public class UsrArticleController {
 	@ResponseBody
 	public String doModify(int id, String title, String body) {
 		
-		Article foundArticle = null;
-		
-		for (Article article : articles) {
-			if (article.getId() == id) {
-				foundArticle = article;
-				break;
-			}
-		}
+		Article foundArticle = articleService.getArticleById(id);
 		
 		if (foundArticle == null) {
 			return id + "번 게시물은 존재하지 않습니다";
 		}
 		
-		foundArticle.setTitle(title);
-		foundArticle.setBody(body);
+		articleService.modifyArticle(foundArticle, title, body);
 		
 		return id + "번 게시물을 정상적으로 수정했습니다";
 	}
-	
+
 	@GetMapping("/usr/article/doDelete")
 	@ResponseBody
 	public String doDelete(int id) {
 		
-		Article foundArticle = null;
-		
-		for (Article article : articles) {
-			if (article.getId() == id) {
-				foundArticle = article;
-				break;
-			}
-		}
+		Article foundArticle = articleService.getArticleById(id);
 		
 		if (foundArticle == null) {
 			return id + "번 게시물은 존재하지 않습니다";
 		}
 		
-		articles.remove(foundArticle);
+		articleService.deleteArticle(foundArticle);
 		
 		return id + "번 게시물을 정상적으로 삭제했습니다";
 	}

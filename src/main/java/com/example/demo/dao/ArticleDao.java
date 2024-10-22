@@ -30,4 +30,22 @@ public class ArticleDao {
 		return articles;
 	}
 
+	public Article getArticleById(int id) {
+		for (Article article : articles) {
+			if (article.getId() == id) {
+				return article;
+			}
+		}
+		return null;
+	}
+
+	public void modifyArticle(Article foundArticle, String title, String body) {
+		foundArticle.setTitle(title);
+		foundArticle.setBody(body);
+	}
+
+	public void deleteArticle(Article foundArticle) {
+		articles.remove(foundArticle);
+	}
+
 }

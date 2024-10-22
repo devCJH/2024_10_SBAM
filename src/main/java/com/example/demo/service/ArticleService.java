@@ -20,4 +20,16 @@ public class ArticleService {
 	public List<Article> getArticles() {
 		return articleDao.getArticles();
 	}
+
+	public Article getArticleById(int id) {
+		return articleDao.getArticleById(id);
+	}
+
+	public void modifyArticle(Article foundArticle, String title, String body) {
+		articleDao.modifyArticle(foundArticle, title, body);
+	}
+
+	public void deleteArticle(Article foundArticle) {
+		articleDao.deleteArticle(foundArticle);
+	}
 }
