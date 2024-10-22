@@ -34,6 +34,7 @@ public class UsrArticleController {
 		return articleService.getArticles();
 	}
 	
+	
 	@GetMapping("/usr/article/showDetail")
 	@ResponseBody
 	public Object showDetail(int id) {
