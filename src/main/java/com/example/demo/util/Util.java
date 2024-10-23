@@ -2,6 +2,11 @@ package com.example.demo.util;
 
 public class Util {
 	public static boolean isEmpty(String str) {
-		return str == null || str.trim().length() == 0;
+		
+		if (str == null) {
+			return true;
+		}
+		
+		return str.trim().length() == 0;
 	}
 }

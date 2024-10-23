@@ -47,6 +47,6 @@ public class UsrMemberController {
 		
 		int id = memberService.getLastInsertId();
 		
-		return ResultData.from("S-1", "회원가입 성공", memberService.getMemberById(id));
+		return ResultData.from("S-1", String.format("[ %s ] 님이 가입되었습니다", loginId), memberService.getMemberById(id));
 	}
 }
