@@ -12,19 +12,21 @@ import com.example.demo.service.ArticleService;
 @Controller
 public class UsrArticleController {
 	
-	private int lastArticleId;
 	private ArticleService articleService;
 	
 	public UsrArticleController(ArticleService articleService) {
 		this.articleService = articleService;
-		this.lastArticleId = 3;
 	}
 	
 	@GetMapping("/usr/article/doWrite")
 	@ResponseBody
 	public Article doWrite(String title, String body) {
-		lastArticleId++;
-		articleService.writeArticle(lastArticleId, title, body);
+		articleService.writeArticle(title, body);
+		
+		int id = articleService.getLastInsertId();
+		
+		Article article = articleService.getArticleById(id);
+		
 		return article;
 	}
 
