@@ -22,7 +22,7 @@ public interface MemberDao {
 	@Select("""
 			SELECT *
 				FROM `member`
-				WHERE loginId = #{loginID}
+				WHERE loginId = #{loginId}
 			""")
 	Member getMemberByLoginId(String loginId);
 

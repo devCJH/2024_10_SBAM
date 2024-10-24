@@ -11,6 +11,8 @@ import com.example.demo.dto.ResultData;
 import com.example.demo.service.ArticleService;
 import com.example.demo.util.Util;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class UsrArticleController {
 	
@@ -41,8 +43,7 @@ public class UsrArticleController {
 
 	@GetMapping("/usr/article/showList")
 	@ResponseBody
-	public ResultData<List<Article>> showList() {
-		
+	public ResultData<List<Article>> showList(HttpServletRequest requst) {
 		List<Article> articles = articleService.getArticles();
 		
 		if (articles.size() == 0) {
