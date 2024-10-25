@@ -9,7 +9,6 @@ import com.example.demo.dto.ResultData;
 import com.example.demo.service.MemberService;
 import com.example.demo.util.Util;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -55,9 +54,7 @@ public class UsrMemberController {
 	
 	@GetMapping("/usr/member/doLogin")
 	@ResponseBody
-	public ResultData doLogin(HttpServletRequest req, String loginId, String loginPw) {
-		HttpSession session = req.getSession();
-		
+	public ResultData doLogin(HttpSession session, String loginId, String loginPw) {
 		if (session.getAttribute("loginedMemberId") != null) {
 			return ResultData.from("F-1", "로그아웃 후 이용할 수 있는 기능입니다");
 		}
@@ -87,9 +84,7 @@ public class UsrMemberController {
 	
 	@GetMapping("/usr/member/doLogout")
 	@ResponseBody
-	public ResultData doLogout(HttpServletRequest req) {
-		HttpSession session = req.getSession();
-		
+	public ResultData doLogout(HttpSession session) {
 		if (session.getAttribute("loginedMemberId") == null) {
 			return ResultData.from("F-1", "로그인 후 이용할 수 있는 기능입니다");
 		}
