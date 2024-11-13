@@ -58,10 +58,6 @@ public class UsrArticleController {
 		
 		model.addAttribute("articles", articles);
 		
-		for (Article article : articles) {
-			
-		}
-		
 		return "usr/article/list";
 	}
 	
