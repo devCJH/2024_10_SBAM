@@ -12,7 +12,7 @@ public class UsrHomeController {
 	}
 	
 	@GetMapping("/")
-	public String showMain2() {
+	public String showRoot() {
 		return "redirect:/usr/home/main";
 	}
 }

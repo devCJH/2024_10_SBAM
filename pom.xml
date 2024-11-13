@@ -91,11 +91,9 @@
 		</dependency>
 		
 		<dependency>
-		    <groupId>org.glassfish.web</groupId>
-		    <artifactId>jstl-impl</artifactId>
-		    <version>1.2</version>
-		    <scope>runtime</scope>
-		</dependency>
+	        <groupId>org.glassfish.web</groupId>
+	        <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+	    </dependency>
 	</dependencies>
 
 	<build>

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -11,7 +12,6 @@ import com.example.demo.dto.ResultData;
 import com.example.demo.service.ArticleService;
 import com.example.demo.util.Util;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -52,16 +52,17 @@ public class UsrArticleController {
 		return ResultData.from("S-1", String.format("%d번 게시물을 작성했습니다", id), articleService.getArticleById(id));
 	}
 
-	@GetMapping("/usr/article/showList")
-	@ResponseBody
-	public ResultData<List<Article>> showList(HttpServletRequest requst) {
+	@GetMapping("/usr/article/list")
+	public String showList(Model model) {
 		List<Article> articles = articleService.getArticles();
 		
-		if (articles.size() == 0) {
-			return ResultData.from("F-1", "게시물이 존재하지 않습니다");
+		model.addAttribute("articles", articles);
+		
+		for (Article article : articles) {
+			
 		}
 		
-		return ResultData.from("S-1", "리스트 조회 성공", articles);
+		return "usr/article/list";
 	}
 	
 	

@@ -14,7 +14,7 @@
 		
 		<ul>
 			<li><a href="/">HOME</a></li>
-			<li><a href="#">LIST</a></li>
+			<li><a href="/usr/article/list">LIST</a></li>
 		</ul>
 	</div>
 	
