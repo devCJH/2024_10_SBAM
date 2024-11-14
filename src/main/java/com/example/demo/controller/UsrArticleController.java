@@ -67,9 +67,6 @@ public class UsrArticleController {
 		
 		Article article = articleService.getArticleById(id);
 		
-//		if (foundArticle == null) {
-//			return null;
-//		}
 		model.addAttribute("article", article);
 		
 		return "usr/article/detail";

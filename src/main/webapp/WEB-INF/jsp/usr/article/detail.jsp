@@ -8,7 +8,7 @@
 
 <section>
 	<div>
-		<table border=1>
+		<table>
 			<tr>
 				<th>번호</th>
 				<td>${article.getId() }</td>
