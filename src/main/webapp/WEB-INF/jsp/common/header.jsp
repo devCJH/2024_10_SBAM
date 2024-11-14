@@ -15,17 +15,17 @@
 <link rel="stylesheet" href="/resource/common.css" />
 </head>
 <body>
-	<div>
-		<div><a href="${pageContext.request.contextPath}/">로고</a></div>
-		
-		<ul>
-			<li><a href="${pageContext.request.contextPath}/">HOME</a></li>
-			<li><a href="${pageContext.request.contextPath}/usr/article/list">LIST</a></li>
+	<div class="h-20 flex container mx-auto text-3xl">
+		<div><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/">로고</a></div>
+		<div class="grow"></div>
+		<ul class="flex">
+			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/">HOME</a></li>
+			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/usr/article/list">LIST</a></li>
 		</ul>
 	</div>
 
-	<section>
-		<div>
-			<h1>${pageTitle }&nbsp;페이지</h1>
+	<section class="my-4 text-2xl">
+		<div class="container mx-auto">
+			<div>${pageTitle }&nbsp;페이지</div>
 		</div>
 	</section>
