@@ -37,8 +37,12 @@
 			</table>
 		</div>
 		
-		<div class="btns mt-3 text-sm">
+		<div class="btns mt-3 text-sm flex justify-between">
 			<button onclick="history.back();">뒤로가기</button>
+			
+			<c:if test="${loginedMemberId == article.getMemberId() }">
+				<a onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.getId() }">삭제</a>
+			</c:if>
 		</div>
 	</div>
 </section>
