@@ -10,7 +10,7 @@ public class Util {
 		return str.trim().length() == 0;
 	}
 
-	public static String jsReplace(String msg, String uri) {
+	public static String jsReturn(String msg, String uri) {
 		
 		if (msg == null) {
 			msg = "";
@@ -28,7 +28,14 @@ public class Util {
 						alert(msg);
 					}
 					
-					location.replace('%s');
+					const uri = '%s'.trim();
+					
+					if (uri.length > 0) {
+						location.replace(uri);
+					} else {
+						history.back();
+					}
+					
 				</script>
 				""", msg, uri);
 	}

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,12 @@
 		<ul class="flex">
 			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/">HOME</a></li>
 			<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/usr/article/list">LIST</a></li>
+			<c:if test="${rq.getLoginedMemberId() == -1 }">
+				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/usr/member/login">LOGIN</a></li>
+			</c:if>
+			<c:if test="${rq.getLoginedMemberId() != -1 }">
+				<li class="hover:underline"><a class="h-full px-3 flex items-center" href="${pageContext.request.contextPath}/usr/member/doLogout">LOGOUT</a></li>
+			</c:if>
 		</ul>
 	</div>
 

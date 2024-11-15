@@ -2,14 +2,16 @@ package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Member;
 import com.example.demo.dto.ResultData;
+import com.example.demo.dto.Rq;
 import com.example.demo.service.MemberService;
 import com.example.demo.util.Util;
 
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class UsrMemberController {
@@ -52,45 +54,39 @@ public class UsrMemberController {
 		return ResultData.from("S-1", String.format("[ %s ] 님이 가입되었습니다", loginId), memberService.getMemberById(id));
 	}
 	
-	@GetMapping("/usr/member/doLogin")
+	@GetMapping("/usr/member/login")
+	public String login() {
+		return "usr/member/login";
+	}
+	
+	@PostMapping("/usr/member/doLogin")
 	@ResponseBody
-	public ResultData doLogin(HttpSession session, String loginId, String loginPw) {
-		if (session.getAttribute("loginedMemberId") != null) {
-			return ResultData.from("F-1", "로그아웃 후 이용할 수 있는 기능입니다");
-		}
+	public String doLogin(HttpServletRequest req, String loginId, String loginPw) {
 		
-		if (Util.isEmpty(loginId)) {
-			return ResultData.from("F-2", "아이디를 입력해주세요");
-		}
-		
-		if (Util.isEmpty(loginPw)) {
-			return ResultData.from("F-3", "비밀번호를 입력해주세요");
-		}
+		Rq rq = (Rq) req.getAttribute("rq");
 		
 		Member member = memberService.getMemberByLoginId(loginId);
 		
 		if (member == null) {
-			return ResultData.from("F-4", String.format("[ %s ] 은(는) 존재하지 않는 아이디입니다", loginId));
+			return Util.jsReturn(String.format("[ %s ] 은(는) 존재하지 않는 아이디입니다", loginId), null);
 		}
 		
 		if (member.getLoginPw().equals(loginPw) == false) {
-			return ResultData.from("F-5", "비밀번호를 확인해주세요");
+			return Util.jsReturn("비밀번호를 확인해주세요", null);
 		}
 		
-		session.setAttribute("loginedMemberId", member.getId());
+		rq.login(member.getId());
 		
-		return ResultData.from("S-1", String.format("%s님 환영합니다~", member.getName()));
+		return Util.jsReturn(String.format("%s님 환영합니다~", member.getName()), "/");
 	}
 	
 	@GetMapping("/usr/member/doLogout")
 	@ResponseBody
-	public ResultData doLogout(HttpSession session) {
-		if (session.getAttribute("loginedMemberId") == null) {
-			return ResultData.from("F-1", "로그인 후 이용할 수 있는 기능입니다");
-		}
+	public String doLogout(HttpServletRequest req) {
+		Rq rq = (Rq) req.getAttribute("rq");
 		
-		session.removeAttribute("loginedMemberId");
+		rq.logout();
 		
-		return ResultData.from("S-1", "정상적으로 로그아웃 되었습니다");
+		return Util.jsReturn("정상적으로 로그아웃 되었습니다", "/");
 	}
 }
