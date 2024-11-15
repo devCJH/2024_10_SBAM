@@ -6,9 +6,30 @@
 
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 
+<script>
+	const loginForm_onSubmit = function(form) {
+		form.loginId.value = form.loginId.value.trim();
+		form.loginPw.value = form.loginPw.value.trim();
+		
+		if (form.loginId.value.length == 0) {
+			alert('아이디를 입력해주세요');
+			form.loginId.focus();
+			return;
+		}
+		
+		if (form.loginPw.value.length == 0) {
+			alert('비밀번호를 입력해주세요');
+			form.loginPw.focus();
+			return;
+		}
+		
+		form.submit();
+	}
+</script>
+
 <section class="mt-8">
 	<div class="container mx-auto">
-		<form action="doLogin" method="post">
+		<form action="doLogin" method="post" onsubmit="loginForm_onSubmit(this); return false;">
 			<div class="table-box">
 				<table>
 					<tr>
