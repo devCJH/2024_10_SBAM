@@ -11,19 +11,23 @@ html * {
 	width: 100%;
 }
 
-.table-box > table th, .table-box > table td{
-	border: 1px solid black;
-	padding: 10px;
-	text-align: center;
+.login-table > table {
+	width: 50%;
 }
 
-.btns > button, .btns > a {
-	border: 1px solid black;
-	border-radius: 6px;
-	padding: 5px;
-}
+/* .table-box > table th, .table-box > table td{ */
+/* 	border: 1px solid black; */
+/* 	padding: 10px; */
+/* 	text-align: center; */
+/* } */
 
-.btns > button:hover, .btns > a:hover {
-	background-color: black;
-	color: white;
-}
+/* .btns > button, .btns > a { */
+/* 	border: 1px solid black; */
+/* 	border-radius: 6px; */
+/* 	padding: 5px; */
+/* } */
+
+/* .btns > button:hover, .btns > a:hover { */
+/* 	background-color: black; */
+/* 	color: white; */
+/* } */

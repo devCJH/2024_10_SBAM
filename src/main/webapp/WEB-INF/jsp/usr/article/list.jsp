@@ -9,7 +9,7 @@
 <section class="mt-8">
 	<div class="container mx-auto">
 		<div class="table-box">
-			<table>
+			<table class="table table-lg">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -20,9 +20,9 @@
 				</thead>
 				<tbody>
 					<c:forEach var="article" items="${articles }">
-						<tr>
+						<tr class="hover">
 							<td>${article.getId() }</td>
-							<td class="hover:underline"><a href="detail?id=${article.getId() }">${article.getTitle() }</a></td>
+							<td class="link link-hover"><a href="detail?id=${article.getId() }">${article.getTitle() }</a></td>
 							<td>${article.getLoginId() }</td>
 							<td>${article.getRegDate().substring(2,16) }</td>
 						</tr>

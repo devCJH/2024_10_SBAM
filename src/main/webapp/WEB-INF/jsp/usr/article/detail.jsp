@@ -9,7 +9,7 @@
 <section class="mt-8">
 	<div class="container mx-auto">
 		<div class="table-box">
-			<table>
+			<table class="table table-lg">
 				<tr>
 					<th>번호</th>
 					<td>${article.getId() }</td>
@@ -37,11 +37,15 @@
 			</table>
 		</div>
 		
-		<div class="btns mt-3 text-sm flex justify-between">
-			<button onclick="history.back();">뒤로가기</button>
-			
+		<div class="mt-3 text-sm flex justify-between">
+			<div>	
+				<button class="btn btn-active btn-sm" onclick="history.back();">뒤로가기</button>
+			</div>
 			<c:if test="${rq.getLoginedMemberId() == article.getMemberId() }">
-				<a onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.getId() }">삭제</a>
+				<div>
+					<a class="btn btn-active btn-sm" href="modify?id=${article.getId() }">수정</a>
+					<a class="btn btn-active btn-sm" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.getId() }">삭제</a>
+				</div>
 			</c:if>
 		</div>
 	</div>

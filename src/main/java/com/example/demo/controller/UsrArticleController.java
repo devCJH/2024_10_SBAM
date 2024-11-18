@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
@@ -71,33 +72,23 @@ public class UsrArticleController {
 		return "usr/article/detail";
 	}
 	
-	@GetMapping("/usr/article/doModify")
+	@GetMapping("/usr/article/modify")
+	public String modify(Model model, int id) {
+		
+		Article article = articleService.getArticleById(id);
+		
+		model.addAttribute("article", article);
+		
+		return "usr/article/modify";
+	}
+	
+	@PostMapping("/usr/article/doModify")
 	@ResponseBody
-	public ResultData<Article> doModify(HttpSession session, int id, String title, String body) {
-		
-		int loginedMemberId = -1;
-		
-		if (session.getAttribute("loginedMemberId") != null) {
-			loginedMemberId = (int) session.getAttribute("loginedMemberId");
-		}
-		
-		if (loginedMemberId == -1) {
-			return ResultData.from("F-1", "로그인 후 이용할 수 있는 기능입니다");
-		}
-		
-		Article foundArticle = articleService.getArticleById(id);
-		
-		if (foundArticle == null) {
-			return ResultData.from("F-2", String.format("%d번 게시물은 존재하지 않습니다", id));
-		}
-		
-		if (loginedMemberId != foundArticle.getMemberId()) {
-			return ResultData.from("F-3", "해당 게시물에 대한 권한이 없습니다");
-		}
+	public String doModify(HttpSession session, int id, String title, String body) {
 		
 		articleService.modifyArticle(id, title, body);
 		
-		return ResultData.from("S-1", String.format("%d번 게시물을 수정했습니다", id), articleService.getArticleById(id));
+		return Util.jsReturn(String.format("%d번 게시물을 수정했습니다", id), String.format("detail?id=%d", id));
 	}
 
 	@GetMapping("/usr/article/doDelete")
