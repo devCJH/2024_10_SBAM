@@ -2,12 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 
-<c:set var="pageTitle" value="수정" />
+<c:set var="pageTitle" value="글쓰기" />
 
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 
 <script>
-	const modifyForm_onSubmit = function(form) {
+	const writeForm_onSubmit = function(form) {
 		form.title.value = form.title.value.trim();
 		form.body.value = form.body.value.trim();
 		
@@ -29,38 +29,21 @@
 
 <section class="mt-8">
 	<div class="container mx-auto">
-		<form action="doModify" method="post" onsubmit="modifyForm_onSubmit(this); return false;">
-			<input type="hidden" name="id" value="${article.getId() }"/>
+		<form action="doWrite" method="post" onsubmit="writeForm_onSubmit(this); return false;">
 			<div class="w-9/12 mx-auto">
 				<table class="table table-lg">
 					<tr>
-						<th>번호</th>
-						<td>${article.getId() }</td>
-					</tr>
-					<tr>
-						<th>작성일</th>
-						<td>${article.getRegDate().substring(2, 16) }</td>
-					</tr>
-					<tr>
-						<th>수정일</th>
-						<td>${article.getUpdateDate().substring(2, 16) }</td>
-					</tr>
-					<tr>
-						<th>작성자</th>
-						<td>${article.getLoginId() }</td>
-					</tr>
-					<tr>
 						<th>제목</th>
-						<td><input class="input input-bordered w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" value="${article.getTitle() }"/></td>
+						<td><input class="input input-bordered w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" /></td>
 					</tr>
 					<tr>
 						<th>내용</th>
-						<td><textarea class="textarea textarea-bordered w-full max-w-xs" name="body" placeholder="내용을 입력해주세요">${article.getBody() }</textarea></td>
+						<td><textarea class="textarea textarea-bordered w-full max-w-xs" name="body" placeholder="내용을 입력해주세요"></textarea></td>
 					</tr>
 					<tr>
 						<td colspan="2">
 							<div class="flex justify-center">
-								<button class="btn btn-active btn-wide">수정</button>
+								<button class="btn btn-active btn-wide">작성</button>
 							</div>
 						</td>
 					</tr>

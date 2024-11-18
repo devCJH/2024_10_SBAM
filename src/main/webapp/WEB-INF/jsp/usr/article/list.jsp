@@ -30,6 +30,12 @@
 				</tbody>
 			</table>
 		</div>
+		
+		<c:if test="${rq.getLoginedMemberId() != -1 }">
+			<div class="w-9/12 mx-auto flex justify-end my-3">
+				<a class="btn btn-active btn-sm" href="write">글쓰기</a>
+			</div>
+		</c:if>
 	</div>
 </section>
 
