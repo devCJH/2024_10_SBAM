@@ -31,7 +31,7 @@
 	<div class="container mx-auto">
 		<form action="doModify" method="post" onsubmit="modifyForm_onSubmit(this); return false;">
 			<input type="hidden" name="id" value="${article.getId() }"/>
-			<div class="table-box">
+			<div class="w-9/12 mx-auto">
 				<table class="table table-lg">
 					<tr>
 						<th>번호</th>
@@ -67,7 +67,7 @@
 				</table>
 			</div>
 		</form>
-		<div class="mt-3 text-sm flex justify-between">
+		<div class="w-9/12 mx-auto mt-3 text-sm flex justify-between">
 			<div>	
 				<button class="btn btn-active btn-sm" onclick="history.back();">뒤로가기</button>
 			</div>

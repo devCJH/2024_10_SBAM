@@ -8,7 +8,7 @@
 
 <section class="mt-8">
 	<div class="container mx-auto">
-		<div class="table-box">
+		<div class="w-9/12 mx-auto">
 			<table class="table table-lg">
 				<thead>
 					<tr>

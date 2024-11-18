@@ -30,8 +30,8 @@
 <section class="mt-8">
 	<div class="container mx-auto">
 		<form action="doLogin" method="post" onsubmit="loginForm_onSubmit(this); return false;">
-			<div class="login-table">
-				<table class="table table-lg mx-auto">
+			<div class="w-6/12 mx-auto">
+				<table class="table table-lg">
 					<tr>
 						<td>
 							<label class="input input-bordered flex items-center gap-2">
@@ -74,10 +74,6 @@
 				</table>
 			</div>
 		</form>
-		
-		<div class="mt-3 text-sm">
-			<button class="btn btn-active btn-sm" onclick="history.back();">뒤로가기</button>
-		</div>
 	</div>
 </section>
 
