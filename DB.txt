@@ -39,7 +39,7 @@ INSERT INTO article
 INSERT INTO article
 	SET regDate = NOW()
 			, updateDate = NOW()
-			, memberId = 2
+			, memberId = 3
 			, boardId = 2
 			, title = '제목2'
 			, `body` = '내용2';
@@ -63,6 +63,12 @@ INSERT INTO `member`
 			, loginId = 'test2'
 			, loginPw = 'test2'
 			, `name` = '유저2';
+INSERT INTO `member`
+	SET regDate = NOW()
+			, updateDate = NOW()
+			, loginId = 'test3'
+			, loginPw = 'test3'
+			, `name` = '유저3';
 			
 INSERT INTO board
 	SET `name` = '공지사항';
@@ -72,3 +78,15 @@ INSERT INTO board
 SELECT * FROM article;
 SELECT * FROM `member`;
 SELECT * FROM board;
+
+INSERT INTO article
+(
+    regDate, updateDate, boardId, memberId, title, `body`
+)
+SELECT NOW()
+        , NOW()
+        , FLOOR(RAND() * 2) + 1
+        , FLOOR(RAND() * 3) + 1
+        , CONCAT('제목_', FLOOR(RAND() * 10000))
+        , CONCAT('내용_', FLOOR(RAND() * 10000))
+    FROM article;
