@@ -33,6 +33,24 @@
 			<div class="w-9/12 mx-auto">
 				<table class="table table-lg">
 					<tr>
+						<th>게시판</th>
+						<td>
+							<div class="flex">
+								<div>
+									<label class="flex items-center">
+										<input class="radio radio-sm" type="radio" name="boardId" value="1" />&nbsp;&nbsp;공지사항
+									</label>
+								</div>
+								<div class="w-16"></div>
+								<div>
+									<label class="flex items-center">
+										<input class="radio radio-sm" type="radio" name="boardId" value="2" checked />&nbsp;&nbsp;자유
+									</label>
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr>
 						<th>제목</th>
 						<td><input class="input input-bordered w-full max-w-xs" type="text" name="title" placeholder="제목을 입력해주세요" /></td>
 					</tr>
