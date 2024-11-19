@@ -33,8 +33,9 @@ public interface ArticleDao {
 				ON a.memberId = m.id
 				WHERE a.boardId = #{boardId}
 				ORDER BY a.id DESC
+				LIMIT #{limitFrom}, 10
 			""")
-	public List<Article> getArticles(int boardId);
+	public List<Article> getArticles(int boardId, int limitFrom);
 
 	@Select("""
 			SELECT a.*
@@ -72,4 +73,11 @@ public interface ArticleDao {
 				WHERE id = #{boardId};
 			""")
 	public Board getBoardById(int boardId);
+
+	@Select("""
+			SELECT COUNT(id)
+				FROM article
+				WHERE boardId = #{boardId}
+			""")
+	public int getArticlesCnt(int boardId);
 }

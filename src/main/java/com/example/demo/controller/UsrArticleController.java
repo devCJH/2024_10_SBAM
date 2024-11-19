@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
@@ -45,13 +46,30 @@ public class UsrArticleController {
 	}
 
 	@GetMapping("/usr/article/list")
-	public String showList(Model model, int boardId) {
-		
+	public String showList(Model model, int boardId, @RequestParam(defaultValue = "1") int cPage) {
 		Board board = articleService.getBoardById(boardId);
-		List<Article> articles = articleService.getArticles(boardId);
+
+		int limitFrom = (cPage - 1) * 10;
+		
+		List<Article> articles = articleService.getArticles(boardId, limitFrom);
+		int articlesCnt = articleService.getArticlesCnt(boardId);
+		
+		int totalPagesCnt = (int) Math.ceil((double) articlesCnt / 10);
+		
+		int from = ((cPage - 1) / 10) * 10 + 1;
+		int end = (((cPage - 1) / 10) + 1) * 10;
+		
+		if (end > totalPagesCnt) {
+			end = totalPagesCnt;
+		}
 		
 		model.addAttribute("board", board);
 		model.addAttribute("articles", articles);
+		model.addAttribute("articlesCnt", articlesCnt);
+		model.addAttribute("totalPagesCnt", totalPagesCnt);
+		model.addAttribute("from", from);
+		model.addAttribute("end", end);
+		model.addAttribute("cPage", cPage);
 		
 		return "usr/article/list";
 	}

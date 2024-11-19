@@ -8,6 +8,9 @@
 
 <section class="mt-8">
 	<div class="container mx-auto">
+		<div class="w-9/12 mx-auto mb-2 pl-3 text-sm">
+			<div>총 : ${articlesCnt }개</div>
+		</div>
 		<div class="w-9/12 mx-auto">
 			<table class="table table-lg">
 				<thead>
@@ -36,6 +39,26 @@
 				<a class="btn btn-active btn-sm" href="write">글쓰기</a>
 			</div>
 		</c:if>
+		
+		<div class="mt-2 flex justify-center">
+			<div class="join">
+				<c:set var="path" value="?boardId=${board.getId() }" />
+			
+				<c:if test="${from != 1 }">
+					<a class="join-item btn btn-sm" href="${path }&cPage=1"><i class="fa-solid fa-angles-left"></i></a>
+					<a class="join-item btn btn-sm" href="${path }&cPage=${from - 1 }"><i class="fa-solid fa-angle-left"></i></a>
+				</c:if>
+				
+				<c:forEach var="i" begin="${from }" end="${end }">
+					<a class="join-item btn btn-sm ${cPage == i ? 'btn-active' : '' }" href="${path }&cPage=${i }">${i }</a>
+				</c:forEach>
+				
+				<c:if test="${end != totalPagesCnt }">
+					<a class="join-item btn btn-sm" href="${path }&cPage=${end + 1 }"><i class="fa-solid fa-angle-right"></i></a>
+					<a class="join-item btn btn-sm" href="${path }&cPage=${totalPagesCnt }"><i class="fa-solid fa-angles-right"></i></a>
+				</c:if>
+			</div>
+		</div>
 	</div>
 </section>
 
