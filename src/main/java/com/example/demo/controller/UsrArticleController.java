@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.demo.dto.Article;
 import com.example.demo.dto.Board;
+import com.example.demo.dto.Reply;
 import com.example.demo.dto.Rq;
 import com.example.demo.service.ArticleService;
+import com.example.demo.service.ReplyService;
 import com.example.demo.util.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,9 +24,11 @@ import jakarta.servlet.http.HttpSession;
 public class UsrArticleController {
 	
 	private ArticleService articleService;
+	private ReplyService replyService;
 	
-	public UsrArticleController(ArticleService articleService) {
+	public UsrArticleController(ArticleService articleService, ReplyService replyService) {
 		this.articleService = articleService;
+		this.replyService = replyService;
 	}
 	
 	@GetMapping("/usr/article/write")
@@ -78,8 +82,10 @@ public class UsrArticleController {
 	public String showDetail(Model model, int id) {
 		
 		Article article = articleService.getArticleById(id);
+		List<Reply> replies = replyService.getReplies("article", id);
 		
 		model.addAttribute("article", article);
+		model.addAttribute("replies", replies);
 		
 		return "usr/article/detail";
 	}
