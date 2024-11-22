@@ -18,7 +18,6 @@ import com.example.demo.service.ReplyService;
 import com.example.demo.util.Util;
 
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UsrArticleController {
@@ -102,7 +101,7 @@ public class UsrArticleController {
 	
 	@PostMapping("/usr/article/doModify")
 	@ResponseBody
-	public String doModify(HttpSession session, int id, String title, String body) {
+	public String doModify(int id, String title, String body) {
 		
 		articleService.modifyArticle(id, title, body);
 		
@@ -111,7 +110,7 @@ public class UsrArticleController {
 
 	@GetMapping("/usr/article/doDelete")
 	@ResponseBody
-	public String doDelete(HttpSession session, int id) {
+	public String doDelete(int id) {
 		
 		articleService.deleteArticle(id);
 		

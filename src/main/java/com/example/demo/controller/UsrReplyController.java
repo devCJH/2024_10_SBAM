@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -29,5 +30,23 @@ public class UsrReplyController {
 		
 		return Util.jsReturn("댓글 작성을 완료했습니다", String.format("../article/detail?id=%d", relId));
 	}
+	
+	@PostMapping("/usr/reply/doModify")
+	@ResponseBody
+	public String doModify(int id, int relId, String body) {
+		
+		replyService.modifyReply(id, body);
+		
+		return Util.jsReturn(String.format("%d번 댓글을 수정했습니다", id), String.format("../article/detail?id=%d", relId));
+	}
 
+	@GetMapping("/usr/reply/doDelete")
+	@ResponseBody
+	public String doDelete(int id, int relId) {
+		
+		replyService.deleteReply(id);
+		
+		return Util.jsReturn(String.format("%d번 댓글을 삭제했습니다", id), String.format("../article/detail?id=%d", relId));
+	}
+	
 }
