@@ -17,7 +17,9 @@ import com.example.demo.service.ArticleService;
 import com.example.demo.service.ReplyService;
 import com.example.demo.util.Util;
 
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Controller
 public class UsrArticleController {
@@ -83,8 +85,27 @@ public class UsrArticleController {
 	}
 
 	@GetMapping("/usr/article/detail")
-	public String showDetail(Model model, int id) {
+	public String showDetail(HttpServletRequest req, HttpServletResponse resp, Model model, int id) {
 
+		Cookie[] cookies = req.getCookies();
+		boolean isViewed = false;
+		
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("viewedArticle_" + id)) {
+					isViewed = true;
+					break;
+				}
+			}
+		}
+		
+		if (!isViewed) {
+			articleService.increaseViews(id);
+			Cookie cookie = new Cookie("viewedArticle_" + id, "true");
+			cookie.setMaxAge(60*30);
+			resp.addCookie(cookie);
+		}
+		
 		Article article = articleService.getArticleById(id);
 		List<Reply> replies = replyService.getReplies("article", id);
 

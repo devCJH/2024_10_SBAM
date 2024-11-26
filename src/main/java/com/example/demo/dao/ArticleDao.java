@@ -116,4 +116,11 @@ public interface ArticleDao {
 			</script>
 			""")
 	public int getArticlesCnt(int boardId, String searchType, String searchKeyword);
+
+	@Update("""
+			UPDATE article
+				SET views = views + 1
+				WHERE id = #{id}
+			""")
+	public void increaseViews(int id);
 }

@@ -39,12 +39,20 @@
 		</div>
 		<div class="w-9/12 mx-auto">
 			<table class="table table-lg">
+				<colgroup>
+					<col width="60" />
+					<col />
+					<col width="60" />
+					<col width="200" />
+					<col width="40"/>
+				</colgroup>
 				<thead>
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
+						<th>조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -54,6 +62,7 @@
 							<td class="link link-hover"><a href="detail?id=${article.getId() }">${article.getTitle() }</a></td>
 							<td>${article.getLoginId() }</td>
 							<td>${article.getRegDate().substring(2,16) }</td>
+							<td>${article.getViews() }</td>
 						</tr>
 					</c:forEach>
 				</tbody>

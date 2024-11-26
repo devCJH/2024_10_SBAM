@@ -48,4 +48,8 @@ public class ArticleService {
 	public int getArticlesCnt(int boardId, String searchType, String searchKeyword) {
 		return articleDao.getArticlesCnt(boardId, searchType, searchKeyword);
 	}
+
+	public void increaseViews(int id) {
+		articleDao.increaseViews(id);
+	}
 }
