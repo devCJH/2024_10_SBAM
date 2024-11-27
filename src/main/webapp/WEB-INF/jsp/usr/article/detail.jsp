@@ -11,6 +11,8 @@
 		if (${rq.getLoginedMemberId() != -1 }) {
 			getLoginId();
 		}
+		
+		getLikePoint();
 	})
 	
 	const getLoginId = function() {
@@ -67,6 +69,47 @@
 		originalForm = null;
 		originalId = null;
 	}
+	
+	const clickLikePoint = async function() {
+		
+		let likePointBtn = $('#likePointBtn > i').hasClass('fa-solid');
+		
+		await $.ajax({
+			url : '/usr/likePoint/clickLikePoint',
+			type : 'GET',
+			data : {
+				relTypeCode : 'article',
+				relId : ${article.getId() },
+				likePointBtn : likePointBtn
+			}
+		})
+		
+		await getLikePoint();
+	}
+	
+	const getLikePoint = function() {
+		$.ajax({
+			url : '/usr/likePoint/getLikePoint',
+			type : 'GET',
+			data : {
+				relTypeCode : 'article',
+				relId : ${article.getId() }
+			},
+			dataType : 'json',
+			success : function(data) {
+				$('#likeCnt').html(data.data);
+				
+				if (data.success) {
+					$('#likePointBtn').html(`<i class="fa-solid fa-heart"></i>`);
+				} else {
+					$('#likePointBtn').html(`<i class="fa-regular fa-heart"></i>`);
+				}
+			},
+			error : function(xhr, status, error) {
+				console.log(error);
+			}
+		})
+	}
 </script>
 
 <section class="mt-8">
@@ -88,6 +131,20 @@
 				<tr>
 					<th>조회수</th>
 					<td>${article.getViews() }</td>
+				</tr>
+				<tr>
+					<th>추천수</th>
+					<td>
+						<c:if test="${rq.getLoginedMemberId() == -1 }">
+							  <span id="likeCnt"></span>
+						</c:if>
+						<c:if test="${rq.getLoginedMemberId() != -1 }">
+							<button class="btn btn-sm text-base" onclick="clickLikePoint();">
+							  <span id="likeCnt"></span>
+							  <span id="likePointBtn"></span>
+							</button>
+						</c:if>
+					</td>
 				</tr>
 				<tr>
 					<th>작성자</th>

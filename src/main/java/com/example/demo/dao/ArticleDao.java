@@ -29,9 +29,13 @@ public interface ArticleDao {
 			<script>
 			SELECT a.*
 					, m.loginId
+					, IFNULL(SUM(l.point), 0) AS `like`
 				FROM article AS a
 				INNER JOIN `member` AS m
 				ON a.memberId = m.id
+				LEFT JOIN likePoint AS l
+				ON l.relTypeCode = 'article'
+				AND l.relId = a.id
 				WHERE a.boardId = #{boardId}
 				<if test="searchKeyword != ''">
 					<choose>
@@ -49,6 +53,7 @@ public interface ArticleDao {
 						</otherwise>
 					</choose>
 				</if>
+				GROUP BY a.id
 				ORDER BY a.id DESC
 				LIMIT #{limitFrom}, 10
 			</script>

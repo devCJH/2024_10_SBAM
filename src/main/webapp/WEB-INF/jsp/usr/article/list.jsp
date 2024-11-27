@@ -45,6 +45,7 @@
 					<col width="60" />
 					<col width="200" />
 					<col width="40"/>
+					<col width="40"/>
 				</colgroup>
 				<thead>
 					<tr>
@@ -53,6 +54,7 @@
 						<th>작성자</th>
 						<th>작성일</th>
 						<th>조회수</th>
+						<th>추천수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -63,6 +65,7 @@
 							<td>${article.getLoginId() }</td>
 							<td>${article.getRegDate().substring(2,16) }</td>
 							<td>${article.getViews() }</td>
+							<td>${article.getLike() }</td>
 						</tr>
 					</c:forEach>
 				</tbody>
