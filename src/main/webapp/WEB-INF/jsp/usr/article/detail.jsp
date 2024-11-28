@@ -168,7 +168,7 @@
 			<c:if test="${rq.getLoginedMemberId() == article.getMemberId() }">
 				<div>
 					<a class="btn btn-active btn-sm" href="modify?id=${article.getId() }">수정</a>
-					<a class="btn btn-active btn-sm" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.getId() }">삭제</a>
+					<a class="btn btn-active btn-sm" onclick="if(confirm('정말 삭제하시겠습니까?') == false) return false;" href="doDelete?id=${article.getId() }&boardId=${article.getBoardId() }">삭제</a>
 				</div>
 			</c:if>
 		</div>
