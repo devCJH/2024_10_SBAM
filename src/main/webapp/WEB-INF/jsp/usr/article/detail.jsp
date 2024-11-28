@@ -156,7 +156,7 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td>${article.getBody() }</td>
+					<td>${article.getForPrintBody() }</td>
 				</tr>
 			</table>
 		</div>
