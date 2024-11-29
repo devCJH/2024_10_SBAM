@@ -46,10 +46,6 @@
 // 	}
 	
 // 	apiTest();
-
-	
-	
-
 </script>
 
 <div>API 테스트</div>
