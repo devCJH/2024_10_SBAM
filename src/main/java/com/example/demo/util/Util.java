@@ -27,7 +27,7 @@ public class Util {
 				<script>
 					const msg = '%s'.trim();
 					
-					if (msg.length > 0) {
+					if (msg) {
 						alert(msg);
 					}
 					

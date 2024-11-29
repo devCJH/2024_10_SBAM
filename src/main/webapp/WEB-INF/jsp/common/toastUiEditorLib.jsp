@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.css" />
 <link rel="stylesheet" href="https://uicdn.toast.com/editor-plugin-color-syntax/latest/toastui-editor-plugin-color-syntax.min.css" />
+<link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/theme/toastui-editor-dark.min.css" />
 <script src="https://uicdn.toast.com/tui-color-picker/latest/tui-color-picker.min.js"></script>
 <script src="https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"></script>
 <script src="https://uicdn.toast.com/editor-plugin-color-syntax/latest/toastui-editor-plugin-color-syntax.min.js"></script>
@@ -16,7 +17,11 @@
 	
 	$(document).ready(function() {
 		const initialValueEl = $('#toast-ui-editor > script');
+		console.log(initialValueEl);
 		const initialValue = initialValueEl.length == 0 ? '' : initialValueEl.html().trim();
+		console.log(initialValue);
+
+		const theme = localStorage.getItem("theme") ?? "light";
 		
 		const editor = new Editor({
 			el: document.querySelector('#toast-ui-editor'),
@@ -24,10 +29,13 @@
 			initialEditType: 'markdown',
 			initialValue: initialValue,
 			previewStyle: 'tab',
+			theme: theme,
 			plugins: [colorSyntax]
 		});
+		
 		toastEditor = editor;
 	})
+	
 	
 	const submitForm = function(form) {
 		const markdown = toastEditor.getMarkdown().trim();
