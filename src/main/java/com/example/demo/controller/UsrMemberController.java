@@ -31,7 +31,7 @@ public class UsrMemberController {
 	@PostMapping("/usr/member/doJoin")
 	@ResponseBody
 	public String doJoin(String loginId, String loginPw, String name) {
-		memberService.joinMember(loginId, loginPw, name);
+		memberService.joinMember(loginId, Util.encryptSHA256(loginPw), name);
 		
 		return Util.jsReturn(String.format("[ %s ] 님이 가입되었습니다", loginId), "login");
 	}
@@ -66,7 +66,7 @@ public class UsrMemberController {
 			return Util.jsReturn(String.format("[ %s ] 은(는) 존재하지 않는 아이디입니다", loginId), null);
 		}
 		
-		if (member.getLoginPw().equals(loginPw) == false) {
+		if (member.getLoginPw().equals(Util.encryptSHA256(loginPw)) == false) {
 			return Util.jsReturn("비밀번호를 확인해주세요", null);
 		}
 		
@@ -112,7 +112,7 @@ public class UsrMemberController {
 	public String doModifyPw(HttpServletRequest req, String loginPw) {
 		Rq rq = (Rq) req.getAttribute("rq");
 		
-		memberService.modifyPassword(rq.getLoginedMemberId(), loginPw);
+		memberService.modifyPassword(rq.getLoginedMemberId(), Util.encryptSHA256(loginPw));
 		
 		rq.logout();
 		return Util.jsReturn("비밀번호 수정이 완료되었습니다. 다시 로그인 해주세요", "login");
