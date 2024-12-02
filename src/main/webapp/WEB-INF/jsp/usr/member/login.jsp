@@ -74,6 +74,12 @@
 				</table>
 			</div>
 		</form>
+		<div class="mt-2 flex justify-end">
+			<div>
+				<a class="btn btn-active btn-sm" href="findLoginId">아이디 찾기</a>
+				<a class="btn btn-active btn-sm mx-2" href="findLoginPw">비밀번호 찾기</a>
+			</div>
+		</div>
 	</div>
 </section>
 

@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/jsp/common/header.jsp" %>
 
 <script>
-	const API_KEY = 'sd2/w1FPMP7dCiLT1r8GNJatfwBCKhZfFVQAA3lNV55hr4o2tNP9B0NpNBn7iAGvAN8QwKTBfli73H/dq7xZBw==';
+	const API_KEY = '${apiTest1Key }';
 	const url = 'http://apis.data.go.kr/B552584/UlfptcaAlarmInqireSvc/getUlfptcaAlarmInfo';
 
 	function apiTestAjax() {

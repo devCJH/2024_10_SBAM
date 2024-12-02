@@ -10,3 +10,17 @@ spring:
     url: jdbc:mysql://127.0.0.1:3307/SB_AM?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul&useOldAliasMetadataBehavior=true&zeroDateTimeNehavior=convertToNull
     username: root
     password: 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: mailtestcjh@gmail.com
+    password: xohvhfpztqxdzaqo
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+custom:
+  apiTest1:
+    key: sd2/w1FPMP7dCiLT1r8GNJatfwBCKhZfFVQAA3lNV55hr4o2tNP9B0NpNBn7iAGvAN8QwKTBfli73H/dq7xZBw==

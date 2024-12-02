@@ -46,4 +46,12 @@ public interface MemberDao {
 				WHERE id = #{loginedMemberId}
 			""")
 	void modifyPassword(int loginedMemberId, String loginPw);
+
+	@Select("""
+			SELECT *
+				FROM `member`
+				WHERE `name` = #{name}
+				AND email = #{email}
+			""")
+	Member getMemberByNameAndEmail(String name, String email);
 }
