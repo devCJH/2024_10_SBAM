@@ -62,7 +62,39 @@
 			<button id="closeBtn">CLOSE</button>
 		</div>
 		
+		<div class="mt-8">
+			<div>
+				<form action="upload" method="post" enctype="multipart/form-data">
+					<input type="file" name="file" />
+					<button class="btn btn-active btn-sm">업로드</button>
+				</form>
+			</div>
+			<div class="mt-2">
+				<a class="btn btn-active btn-sm" href="view">파일보러가기</a>
+			</div>
+		</div>
 		
+		<div class="mt-8">
+			<form action="checkboxSubmit">
+				<label>
+					<input type="checkbox" name="ids" value="1"/>
+					테스트1
+				</label>
+				<label>
+					<input type="checkbox" name="ids" value="2"/>
+					테스트2
+				</label>
+				<label>
+					<input type="checkbox" name="ids" value="3"/>
+					테스트3
+				</label>
+				<label>
+					<input type="checkbox" name="ids" value="4"/>
+					테스트4
+				</label>
+				<button class="btn btn-active btn-sm">체크박스 전송</button>
+			</form>
+		</div>
 	</div>
 </section>
 
