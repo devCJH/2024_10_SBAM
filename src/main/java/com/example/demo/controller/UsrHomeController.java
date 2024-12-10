@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.demo.dto.CartInMenuId;
 import com.example.demo.dto.FileDto;
+import com.example.demo.dto.MenuId;
 import com.example.demo.service.FileService;
 import com.example.demo.util.Util;
 
@@ -32,7 +35,22 @@ public class UsrHomeController {
 	}
 	
 	@GetMapping("/usr/home/main")
-	public String showMain() {
+	public String showMain(Model model) {
+		
+		List<MenuId> menuIds = new ArrayList<>();
+		menuIds.add(new MenuId(1));
+		menuIds.add(new MenuId(2));
+		menuIds.add(new MenuId(3));
+		menuIds.add(new MenuId(4));
+		menuIds.add(new MenuId(5));
+		
+		List<CartInMenuId> cartInMenuIds = new ArrayList<>();
+		cartInMenuIds.add(new CartInMenuId(2));
+		cartInMenuIds.add(new CartInMenuId(4));
+		
+		model.addAttribute("menuIds", menuIds);
+		model.addAttribute("cartInMenuIds", cartInMenuIds);
+		
 		return "usr/home/main";
 	}
 	

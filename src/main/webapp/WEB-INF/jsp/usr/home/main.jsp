@@ -95,6 +95,37 @@
 				<button class="btn btn-active btn-sm">체크박스 전송</button>
 			</form>
 		</div>
+		
+		<div>
+			<c:forEach var="menuId" items="${menuIds }">
+				<div>${menuId.getId() }</div>
+
+				<c:set var="chk" value="true" />
+				
+				<c:forEach var="cartInMenuId" items="${cartInMenuIds }">
+					<c:if test="${chk }">
+						<c:choose>
+							<c:when test="${menuId.getId() == cartInMenuId.getMenuId() }">
+								<c:set var="addCartBtn" value="0" />
+								<c:set var="chk" value="false" />
+							</c:when>
+							<c:otherwise>
+								<c:set var="addCartBtn" value="1" />
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+				</c:forEach>
+				<c:choose>
+					<c:when test="${addCartBtn == 0}">
+							<div>일치하는것 있음</div>
+					</c:when>
+					<c:otherwise>
+							<div>일치하는것 없음</div>
+					</c:otherwise>
+				</c:choose>
+				<br />
+			</c:forEach>
+		</div>
 	</div>
 </section>
 
