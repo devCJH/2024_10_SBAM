@@ -36,6 +36,29 @@
 			$('#modalLayer-bg').hide();
 			$('#modalLayer').hide();
 		})
+		
+// 		웹소켓 사용 스크립트
+		let socket = new SockJS('/ws-stomp');
+		let stompClient = Stomp.over(socket);
+		
+		stompClient.connect({}, function () {
+			
+			let userId = $('#userId').text();
+			stompClient.subscribe('/sub/message', function (message) {
+				let notificationDiv = $('#notifications');
+				notificationDiv.append(`<span>\${message.body}</span>`);
+			})
+		})
+		
+		$('#sendNotification').click(function () {
+			let sender = $('#sender').val();
+			let content = $('#message').val();
+			
+			stompClient.send('/pub/messages', {}, JSON.stringify({
+				sender: sender,
+				content: content
+			}))
+		})
 	})
 	
 </script>
@@ -125,6 +148,26 @@
 				</c:choose>
 				<br />
 			</c:forEach>
+		</div>
+		<hr />
+		<div>
+			<div>알림테스트</div>
+			<div>현재 로그인된 회원의 ID : <span id="userId">${rq.getLoginedMemberId() }</span></div>
+			<label>
+				알림을 받을 사용자 ID : 
+				<input class="input input-bordered" id="sender" type="text">
+			</label>
+			<br />
+			<label>
+				알림으로 보낼 메시지 : 
+				<input class="input input-bordered" id="message" type="text">
+			</label>
+			<br />
+			
+			<button id="sendNotification">알림 보내기</button>
+			
+			<div>알림으로 받은 메시지 내용</div>
+			<div id="notifications"></div>
 		</div>
 	</div>
 </section>
